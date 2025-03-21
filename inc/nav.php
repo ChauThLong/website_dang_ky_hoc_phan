@@ -25,9 +25,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <li class="nav-item">
           <a class="nav-link" href="hocphan.php">Học Phần</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="hp_da_dangky.php">Học phần đã đăng ký</a>
-        </li>
+        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="hp_da_dangky.php">Học phần đã chọn</a>
+            </li>
+        <?php endif; ?>
         <li class="nav-item">
           <a class="nav-link" href="dangky.php">Đăng Ký</a>
         </li>
@@ -41,7 +43,6 @@ if (session_status() === PHP_SESSION_NONE) {
       <!-- Menu bên phải: chỉ hiển thị nếu đã đăng nhập -->
       <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
       <ul class="navbar-nav d-flex align-items-center">
-        <!-- Hiển thị “Xin chào” trên cùng hàng -->
         <li class="nav-item me-3">
           <span class="navbar-text">
             Xin chào, <?php echo $_SESSION['HoTen'] ?? ''; ?>
